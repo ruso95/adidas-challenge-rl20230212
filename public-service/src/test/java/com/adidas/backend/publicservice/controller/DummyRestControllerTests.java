@@ -1,4 +1,4 @@
-package com.adidas.backend.publicservice;
+package com.adidas.backend.publicservice.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,21 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.adidas.backend.publicservice.controller.DummyRestController;
-
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = DummyRestController.class)
 class DummyRestControllerTests {
 
-	@Autowired
-	private DummyRestController dummyRestController;
+    @Autowired
+    private DummyRestController dummyRestController;
 
-	@Test
-	void testDummyController() {
-		String expectedResponse = "Hello, this is a dummy response from public service";
-		ResponseEntity<String> response = dummyRestController.getDummyEndpointResponse();
-		Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assertions.assertEquals(expectedResponse, response.getBody());
-	}
+    @Test
+    void testDummyController() {
+        String expectedResponse = "Hello, this is a dummy response from public service";
+        ResponseEntity<String> response = dummyRestController.getDummyEndpointResponse();
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertEquals(expectedResponse, response.getBody());
+    }
 
 }

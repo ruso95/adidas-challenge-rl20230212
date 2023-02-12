@@ -9,6 +9,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      OWN_SERVICE_PORT: "8080"
+      PRIORITY_SALE_SERVICE_URI: "http://priority-sale-service"
+      PRIORITY_SALE_SERVICE_PORT: "8080"
     links:
       - "priority-sale-service"
 
@@ -18,6 +22,14 @@ services:
     build:
       context: priority-sale-service
       dockerfile: Dockerfile
+    expose:
+      - "8080"
+    environment:
+      OWN_SERVICE_PORT: "8080"
+      ADICLUB_SERVICE_URI: "http://adi-club-service"
+      ADICLUB_SERVICE_PORT: "8080"
+      EMAIL_SERVICE_URI: "http://email-service"
+      EMAIL_SERVICE_PORT: "8080"
     links:
       - "adi-club-service"
       - "email-service"
@@ -25,6 +37,10 @@ services:
   adi-club-service:
     image: localhost/adidas-be-challenge-adiclubservice:latest
     container_name: adidas-be-challenge-adiclubservice
+    expose:
+      - "8080"
+    environment:
+      OWN_SERVICE_PORT: "8080"
     build:
       context: adiclub-service
       dockerfile: Dockerfile
@@ -32,6 +48,10 @@ services:
   email-service:
     image: localhost/adidas-be-challenge-emailservice:latest
     container_name: adidas-be-challenge-emailservice
+    expose:
+      - "8080"
+    environment:
+      OWN_SERVICE_PORT: "8080"
     build:
       context: email-service
       dockerfile: Dockerfile
